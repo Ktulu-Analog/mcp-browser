@@ -1,11 +1,18 @@
 # MCP Browser — Serveur MCP de navigation web avancée
 
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/)
-[![MCP spec 2025-03-26](https://img.shields.io/badge/MCP-2025--03--26-green.svg)](https://modelcontextprotocol.io/)
-[![Playwright](https://img.shields.io/badge/Playwright-Chromium-orange.svg)](https://playwright.dev/)
-[![Licence AGPL-3.0](https://img.shields.io/badge/licence-AGPL--3.0-red.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![MCP](https://img.shields.io/badge/MCP-HTTP%20Streamable-6B46C1?logo=anthropic&logoColor=white)](https://modelcontextprotocol.io/)
+[![Playwright](https://img.shields.io/badge/Playwright-Chromium-45ba4b?logo=playwright&logoColor=white)](https://playwright.dev/)
+[![Docker](https://img.shields.io/badge/Docker-compatible-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 
-Serveur MCP HTTP Streamable (spec 2025-03-26) permettant à n'importe quel client MCP de **piloter un vrai navigateur Chromium headless** pour rechercher, naviguer, extraire et interagir avec le web — y compris les pages JavaScript complexes, shadow DOM, et applications React/Vue.
+---
+
+`mcp-browser` donne à n'importe quel LLM compatible MCP le contrôle d'un vrai navigateur Chromium headless — pas un simple scraper HTTP, mais un navigateur complet capable de rendre du JavaScript, d'interagir avec des formulaires, de gérer des sessions authentifiées et de prendre des screenshots.
+
+Là où la plupart des outils web s'arrêtent face à Cloudflare, aux consent walls RGPD ou aux SPA React/Vue, `mcp-browser` gère tout cela en natif : anti-détection multi-couches, acceptation automatique des bandeaux cookies (OneTrust, Didomi, SourcePoint, CookieBot…), attente d'hydratation DOM pour les pages JavaScript-only, et fallback FlareSolverr pour les challenges Cloudflare persistants. Les **11 outils** couvrent la recherche web multi-moteur avec fallback automatique, l'extraction markdown, les screenshots ciblés par sélecteur CSS, le remplissage de formulaires et la recherche d'images multi-sources (Wikimedia, OpenVerse, Bing).
+
+Compatible Claude Desktop, Claude Code, Demeter ou tout client MCP HTTP Streamable.
 
 ---
 
