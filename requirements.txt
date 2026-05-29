@@ -1,0 +1,7 @@
+playwright>=1.44.0
+playwright-stealth>=2.0.3       # stealth étendu anti-Cloudflare (fortement recommandé)
+mcp[cli]>=1.6.0
+python-dotenv>=1.0.0            # optionnel — chargement du fichier .env
+uvicorn>=0.29.0                 # serveur ASGI (installé avec mcp[cli])
+Pillow>=10.0.0                  # traitement d'images (screenshots)
+aiohttp>=3.9.0                  # fallback FlareSolverr (appels HTTP async vers le service)

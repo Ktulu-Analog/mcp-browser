@@ -1,0 +1,39 @@
+services:
+
+  # ── Serveur MCP principal ──────────────────────────────────────────────────
+  mcp-browser:
+    build: .
+    ports:
+      - "6503:6503"
+    environment:
+      FLARESOLVERR_URL: http://flaresolverr:8191/v1
+      COOKIE_FILE: /data/cookies.json
+    volumes:
+      - mcp-browser-data:/data   # persistance des cookies CF entre redémarrages
+    depends_on:
+      flaresolverr:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ── FlareSolverr — Chromium headful sous Xvfb ─────────────────────────────
+  # Résout les challenges Cloudflare (IUAM, Turnstile) inaccessibles en headless.
+  # Image officielle : https://github.com/FlareSolverr/FlareSolverr
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    environment:
+      LOG_LEVEL: info
+      LOG_HTML: "false"
+      CAPTCHA_SOLVER: none
+      TZ: Europe/Paris
+    ports:
+      - "8191:8191"
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8191/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  mcp-browser-data:   # volume Docker nommé — survit aux docker compose down/up
